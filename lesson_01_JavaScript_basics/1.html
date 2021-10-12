@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Homework</title>
+    <meta charset="UTF-8">
+    <title>Homework</title>
 </head>
 <body>
 <!--
@@ -22,7 +22,14 @@
 <script>
   "use strict";
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
+  let fahrenheitTemperature = null;
+  let celsiusTemperature = Number.parseFloat(prompt('Введите температуру в градусах Цельсия: '));
+
+  fahrenheitTemperature = (9 / 5) * celsiusTemperature + 32;
+
+  console.log(celsiusTemperature, fahrenheitTemperature)
+
+  alert(`Цельсий: ${celsiusTemperature}, Фаренгейт: ${fahrenheitTemperature}`)
 </script>
 </body>
 </html>

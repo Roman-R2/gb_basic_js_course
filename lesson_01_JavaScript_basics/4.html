@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Homework</title>
+    <meta charset="UTF-8">
+    <title>Homework</title>
 </head>
 <body>
 <!--
@@ -28,7 +28,23 @@
 <script>
   "use strict";
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
+  let number = Number.parseInt(prompt('Введите положительное целое число: '));
+  let count = String(number).length;
+  let remainder = null;
+  let bitToBit = [];
+
+  // Это реализация схемы Горнера отсуда https://www.youtube.com/watch?v=b8m9uRMpKJk
+  // Подойдет для числа любой разрядности. Люблю универсальность.
+  let numberCopy = number;
+  while (count > 0) {
+    remainder = numberCopy % 10;
+    numberCopy = Math.floor(numberCopy / 10);
+    bitToBit.push(remainder);
+    count--;
+  }
+
+  console.log(`В числе ${number} количество сотен: ${bitToBit[2]}, десятков: ${bitToBit[1]}, \
+единиц: ${bitToBit[0]}`);
 </script>
 </body>
 </html>
