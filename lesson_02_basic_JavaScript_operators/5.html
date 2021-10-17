@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Homework</title>
+    <meta charset="UTF-8">
+    <title>Homework</title>
 </head>
 <body>
 <!--
@@ -32,7 +32,84 @@ Infinity делать не нужно, однако, в случае если б
 <script>
   "use strict";
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
+  /**
+   * Возвращает сумму двух чисел
+   * @param number1 - первое число
+   * @param number2 - второе число
+   * @returns {*}
+   */
+  function addition(number1, number2) {
+    return number1 + number2;
+  }
+
+  /**
+   * Функция вычтет из большего числа меньшее, а если числа равны, то вернет 0 (это странно, но в задании
+   * так написано: -2 и -2 вернет 0)
+   * @param number1 - первое число
+   * @param number2 - второе число
+   * @returns {number}
+   */
+  function strangeSubtraction(number1, number2) {
+    if (number1 > number2) {
+      return number1 - number2;
+    } else if (number1 < number2) {
+      return number2 - number1;
+    } else if (number1 === number2) {
+      return 0;
+    } else {
+      console.log('Произошло что-то невообразимое!');
+    }
+  }
+
+  /**
+   * Вернет произведение двух чисел
+   * @param number1 - первое число
+   * @param number2 - второе число
+   * @returns {number}
+   */
+  function multiplication(number1, number2) {
+    return number1 * number2;
+  }
+
+  /**
+   * Функция поделит number1 на number2
+   * @param number1 - первое число
+   * @param number2 - второе число
+   * @returns {number}
+   */
+  function division(number1, number2) {
+    if (number2 === 0) {
+      throw 'Хватит делить на ничто!';
+    } else {
+      return number1 / number2;
+    }
+  }
+
+  /**
+   * Функция вернет результат операции, который был передан впараметр operation для двух первых аргументов
+   * @param arg1 - первое число
+   * @param arg2 - второе число
+   * @param operation - строка, которая содержит один символ из: "+", "-", "*", "/"
+   * @returns {number|*}
+   */
+  function mathOperation(arg1, arg2, operation) {
+    switch (operation) {
+      case '+':
+        return addition(arg1, arg2);
+      case '-':
+        return strangeSubtraction(arg1, arg2);
+      case '*':
+        return multiplication(arg1, arg2);
+      case '/':
+        return division(arg1, arg2);
+      default:
+        return NaN;
+    }
+  }
+
+  console.log(mathOperation(5, 3, "+")); // 8
+  console.log(mathOperation(5, 3, ":)")); // NaN
+
 </script>
 </body>
 </html>

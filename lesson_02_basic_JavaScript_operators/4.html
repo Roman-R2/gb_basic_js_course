@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Homework</title>
+    <meta charset="UTF-8">
+    <title>Homework</title>
 </head>
 <body>
 <!--
@@ -31,7 +31,76 @@
 <script>
   "use strict";
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
+  /**
+   * Возвращает сумму двух чисел
+   * @param number1 - первое число
+   * @param number2 - второе число
+   * @returns {*}
+   */
+  function addition(number1, number2) {
+    return number1 + number2;
+  }
+
+  /**
+   * Функция вычтет из большего числа меньшее, а если числа равны, то вернет 0 (это странно, но в задании
+   * так написано: -2 и -2 вернет 0)
+   * @param number1 - первое число
+   * @param number2 - второе число
+   * @returns {number}
+   */
+  function strangeSubtraction(number1, number2) {
+    if (number1 > number2) {
+      return number1 - number2;
+    } else if (number1 < number2) {
+      return number2 - number1;
+    } else if (number1 === number2) {
+      return 0;
+    } else {
+      console.log('Произошло что-то невообразимое!');
+    }
+  }
+
+  /**
+   * Вернет произведение двух чисел
+   * @param number1 - первое число
+   * @param number2 - второе число
+   * @returns {number}
+   */
+  function multiplication(number1, number2) {
+    return number1 * number2;
+  }
+
+  /**
+   * Функция поделит number1 на number2
+   * @param number1 - первое число
+   * @param number2 - второе число
+   * @returns {number}
+   */
+  function division(number1, number2) {
+    if (number2 === 0) {
+      throw 'Хватит делить на ничто!';
+    } else {
+      return number1 / number2;
+    }
+  }
+
+
+  console.log(addition(2, 2));
+  console.log(addition(-2, 2));
+
+  console.log(strangeSubtraction(8, 2));
+  console.log(strangeSubtraction(2, 8));
+  console.log(strangeSubtraction(-2, -8));
+  console.log(strangeSubtraction(-8, -2));
+  console.log(strangeSubtraction(-8, -8));
+
+  console.log(multiplication(2, 5));
+  console.log(multiplication(2, -5));
+
+  console.log(division(2, 6));
+  console.log(division(2.44, 6));
+  console.log(division(0, 9));
+  console.log(division(2.44, 0));
 </script>
 </body>
 </html>
