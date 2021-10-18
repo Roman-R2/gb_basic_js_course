@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+</head>
+<body>
+<!--
+Обязательное задание.
+
+Необходимо попросить пользователя ввести два числа в переменные `a` и `b`.
+Необходимо вывести в консоль одно из результатов выражений:
+Если переменная `a` больше переменной `b`, вывести разность чисел `a` и `b`,
+а именно, вычесть из переменной `a` значение переменной `b`.
+Если оба числа в переменных `a` и `b` отрицательные, вывести произведение чисел
+`a` и `b`.
+Если числа в переменных `a` и `b` разных знаков, вывести сумму чисел `a` и `b`.
+В остальных случаях программа не должна ничего выводить.
+-->
+<script>
+  "use strict";
+
+  /**
+   * Функция проверяет число на отрицательность.
+   * Представим, что мы не знаем про Math.sign(), 0 и -0.
+   * А еще мы не обрабатываем здесь NaN, undefined, infinity...
+   * @param number число для проверки
+   * @returns {boolean} если отрицательное число, то вернет true, иначе false
+   */
+  function isNegative(number) {
+    return number < 0;
+  }
+
+  /**
+   * Функция запрашивает число у пользователя
+   * @param count Какое по счету число запрашивается
+   * @returns {number} вернет введеное число
+   */
+  function requestNumber(count = 1) {
+    return +prompt(`Введите ${count} число:`);
+  }
+
+  /**
+   * Проверит, что number не число
+   * @param number число для проверки
+   * @returns {boolean} если не число, то вернет true, иначе false
+   */
+  function isIncorrectNumber(number) {
+    return isNaN(number);
+  }
+
+  // Запрашиваем числа a, b
+  let a = requestNumber();
+  while (isIncorrectNumber(a)) {
+    a = requestNumber();
+  }
+  let b = requestNumber(2);
+  while (isIncorrectNumber(b)) {
+    b = requestNumber(2);
+  }
+
+
+  if (a > b) {
+    console.log(a - b)
+  } else if (isNegative(a) && isNegative(b)) {
+    console.log(a * b);
+  } else if (isNegative(a) || isNegative(b)) {
+    console.log(a + b);
+  }
+
+</script>
+</body>
+</html>

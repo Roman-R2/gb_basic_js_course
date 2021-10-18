@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+</head>
+<body>
+<!--
+Обязательное задание.
+
+Необходимо реализовать четыре функции, каждая функция должна принимать по два
+числа и выполнять одну из операций (каждая функция выполняет одну из них):
+1. Сложение
+2. Разность
+3. Умножение
+4. Деление
+
+Необходимо сделать так, чтобы функция вернула число, например выражение
+`console.log(sum(2, 6));` должно вывести число 8 в консоль (sum - функция
+сложения в данном примере, ваши названия функций могут отличаться).
+
+Округлять значения, которые возвращают функции не нужно, однако, обратите
+внимание на разность, функция должна вычесть из большего числа меньшее, либо
+вернуть 0, если числа равны.
+
+Функциям всегда передаются корректные числа, проверки на NaN, Infinity делать
+не нужно.
+
+Необходимо для всех функций прописать комментарии jsdoc https://jsdoc.app/.
+-->
+<script>
+  "use strict";
+
+  /**
+   * Возвращает сумму двух чисел
+   * @param number1 - первое число
+   * @param number2 - второе число
+   * @returns {*}
+   */
+  function addition(number1, number2) {
+    return number1 + number2;
+  }
+
+  /**
+   * Функция вычтет из большего числа меньшее, а если числа равны, то вернет 0
+   * @param number1 - первое число
+   * @param number2 - второе число
+   * @returns {number}
+   */
+  function subtraction(number1, number2) {
+    if (number1 > number2) {
+      return number1 - number2;
+    } else if (number1 <= number2) {
+      return number2 - number1;
+    } else {
+      throw 'Произошло что-то невообразимое!';
+    }
+  }
+
+  /**
+   * Вернет произведение двух чисел
+   * @param number1 - первое число
+   * @param number2 - второе число
+   * @returns {number}
+   */
+  function multiplication(number1, number2) {
+    return number1 * number2;
+  }
+
+  /**
+   * Функция поделит number1 на number2
+   * @param number1 - первое число
+   * @param number2 - второе число
+   * @returns {number}
+   */
+  function division(number1, number2) {
+    if (number2 === 0) {
+      throw 'Хватит делить на ничто!';
+    } else {
+      return number1 / number2;
+    }
+  }
+
+
+  console.log(addition(2, 2));
+  console.log(addition(-2, 2));
+
+  console.log(subtraction(8, 2));
+  console.log(subtraction(2, 8));
+  console.log(subtraction(-2, -8));
+  console.log(subtraction(-8, -2));
+  console.log(subtraction(-8, -8));
+  console.log(subtraction(8, 8));
+
+  console.log(multiplication(2, 5));
+  console.log(multiplication(2, -5));
+
+  console.log(division(2, 6));
+  console.log(division(2.44, 6));
+  console.log(division(0, 9));
+  console.log(division(2.44, 0));
+</script>
+</body>
+</html>
