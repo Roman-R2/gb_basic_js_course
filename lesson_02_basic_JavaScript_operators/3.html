@@ -22,17 +22,13 @@
 
   /**
    * Функция проверяет число на отрицательность.
-   * Представим, что мы не знаем про Math.sign(), 0 и -0, и будем считать, что 0 тоже положительное число
-   * (бред конечно :) А еще мы не обрабатываем здесь NaN, undefined, infinity...
+   * Представим, что мы не знаем про Math.sign(), 0 и -0.
+   * А еще мы не обрабатываем здесь NaN, undefined, infinity...
    * @param number число для проверки
    * @returns {boolean} если отрицательное число, то вернет true, иначе false
    */
   function isNegative(number) {
-    if (number < 0) {
-      return Boolean(true);
-    } else {
-      return Boolean(false);
-    }
+    return number < 0;
   }
 
   /**
@@ -50,11 +46,7 @@
    * @returns {boolean} если не число, то вернет true, иначе false
    */
   function isIncorrectNumber(number) {
-    if (isNaN(number)) {
-      return Boolean(true);
-    } else {
-      Boolean(false);
-    }
+    return isNaN(number);
   }
 
   // Запрашиваем числа a, b
@@ -67,12 +59,10 @@
     b = requestNumber(2);
   }
 
-  // В задании нет условия, что вывести только один результат, поэтому проверяем по очереди на все
+
   if (a > b) {
     console.log(a - b)
-  }
-
-  if (isNegative(a) && isNegative(b)) {
+  } else if (isNegative(a) && isNegative(b)) {
     console.log(a * b);
   } else if (isNegative(a) || isNegative(b)) {
     console.log(a + b);

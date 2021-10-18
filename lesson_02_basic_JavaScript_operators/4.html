@@ -42,21 +42,18 @@
   }
 
   /**
-   * Функция вычтет из большего числа меньшее, а если числа равны, то вернет 0 (это странно, но в задании
-   * так написано: -2 и -2 вернет 0)
+   * Функция вычтет из большего числа меньшее, а если числа равны, то вернет 0
    * @param number1 - первое число
    * @param number2 - второе число
    * @returns {number}
    */
-  function strangeSubtraction(number1, number2) {
+  function subtraction(number1, number2) {
     if (number1 > number2) {
       return number1 - number2;
-    } else if (number1 < number2) {
+    } else if (number1 <= number2) {
       return number2 - number1;
-    } else if (number1 === number2) {
-      return 0;
     } else {
-      console.log('Произошло что-то невообразимое!');
+      throw 'Произошло что-то невообразимое!';
     }
   }
 
@@ -88,11 +85,12 @@
   console.log(addition(2, 2));
   console.log(addition(-2, 2));
 
-  console.log(strangeSubtraction(8, 2));
-  console.log(strangeSubtraction(2, 8));
-  console.log(strangeSubtraction(-2, -8));
-  console.log(strangeSubtraction(-8, -2));
-  console.log(strangeSubtraction(-8, -8));
+  console.log(subtraction(8, 2));
+  console.log(subtraction(2, 8));
+  console.log(subtraction(-2, -8));
+  console.log(subtraction(-8, -2));
+  console.log(subtraction(-8, -8));
+  console.log(subtraction(8, 8));
 
   console.log(multiplication(2, 5));
   console.log(multiplication(2, -5));

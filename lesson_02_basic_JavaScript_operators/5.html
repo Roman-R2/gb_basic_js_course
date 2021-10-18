@@ -43,21 +43,18 @@ Infinity делать не нужно, однако, в случае если б
   }
 
   /**
-   * Функция вычтет из большего числа меньшее, а если числа равны, то вернет 0 (это странно, но в задании
-   * так написано: -2 и -2 вернет 0)
+   * Функция вычтет из большего числа меньшее, а если числа равны, то вернет 0
    * @param number1 - первое число
    * @param number2 - второе число
    * @returns {number}
    */
-  function strangeSubtraction(number1, number2) {
+  function subtraction(number1, number2) {
     if (number1 > number2) {
       return number1 - number2;
-    } else if (number1 < number2) {
+    } else if (number1 <= number2) {
       return number2 - number1;
-    } else if (number1 === number2) {
-      return 0;
     } else {
-      console.log('Произошло что-то невообразимое!');
+      throw 'Произошло что-то невообразимое!';
     }
   }
 
@@ -97,7 +94,7 @@ Infinity делать не нужно, однако, в случае если б
       case '+':
         return addition(arg1, arg2);
       case '-':
-        return strangeSubtraction(arg1, arg2);
+        return subtraction(arg1, arg2);
       case '*':
         return multiplication(arg1, arg2);
       case '/':
