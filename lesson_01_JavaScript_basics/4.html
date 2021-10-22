@@ -36,7 +36,7 @@
   // Это реализация схемы Горнера отсуда https://www.youtube.com/watch?v=b8m9uRMpKJk
   // Подойдет для числа любой разрядности. Люблю универсальность.
   let numberCopy = number;
-  while (count > 0) {
+  while (numberCopy > 0) {
     remainder = numberCopy % 10;
     numberCopy = Math.floor(numberCopy / 10);
     bitToBit.push(remainder);
