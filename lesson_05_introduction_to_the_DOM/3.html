@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Homework</title>
+    <meta charset="UTF-8">
+    <title>Homework</title>
 </head>
 <body>
 <!--
@@ -35,18 +35,18 @@
 <br>
 
 <ul>
-  <li>
-    <button>Кнопка 1</button>
-  </li>
-  <li>
-    <button>Кнопка 2</button>
-  </li>
-  <li>
-    <button>Кнопка 3</button>
-  </li>
-  <li>
-    <button>Кнопка 4</button>
-  </li>
+    <li>
+        <button>Кнопка 1</button>
+    </li>
+    <li>
+        <button>Кнопка 2</button>
+    </li>
+    <li>
+        <button>Кнопка 3</button>
+    </li>
+    <li>
+        <button>Кнопка 4</button>
+    </li>
 </ul>
 
 <script>
@@ -57,12 +57,14 @@
   теги будут созданы браузером.
   */
 
+  document.addEventListener('DOMContentLoaded', () => console.log('все теги прогрузились'))
 
   /*
   2. Необходимо вывести сообщение в консоль "страница загрузилась", когда все
   ресурсы страницы будут загружены.
   */
 
+  window.addEventListener('load', () => console.log('страница загрузилась'))
 
   /*
   3. При клике на какой-либо тег button на странице в консоль должно выводиться
@@ -74,11 +76,27 @@
   */
 
 
+  const buttonEls = document.querySelectorAll('button');
+  console.log(buttonEls);
+
+  buttonEls.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      const searchClass = 'super_element';
+      if (event.target.classList.contains(searchClass)) {
+        console.log(`Класс "${searchClass}" присутствует в элементе "${event.target.tagName.toLowerCase()}"`)
+      } else {
+        console.log(`Класс "${searchClass}" отсутствует в элементе "${event.target.tagName.toLowerCase()}"`)
+      }
+    });
+  });
+
   /*
   4. Сделайте, чтобы при наведении на textarea в консоли появлялось сообщение:
   "Вы навели на textarea."
    */
 
+  const textareaEl = document.querySelector('textarea');
+  textareaEl.addEventListener('mouseover', () => console.log('Вы навели на textarea.'))
 
   /*
   5. Необходимо повесить событие клика на тег ul. В обработчике события в
@@ -87,6 +105,14 @@
   Если клик был не по кнопке, то ничего выводить не нужно.
    */
 
+  const ulEls = document.querySelector('ul');
+  console.log(ulEls);
+
+  ulEls.addEventListener('click', (event) => {
+    if (event.target.tagName === "BUTTON") {
+      console.log(event.target.innerText)
+    }
+  })
 
   /*
   6. Вопрос: Почему в console.log пишется сначала текст из 5 задания и только
@@ -94,10 +120,16 @@
   Ответ необходимо написать здесь же, под этим комментарием, своими словами.
   */
 
+  // Потому, что всплытие событий, сначала мы заходим внутрь, затем выходим сначала из элемента button, так как событие повесили на кнопку, то это сначала и выполняется. Потом поднимаемся/всплываем к тегу ul и обрабатываем событие, висящие на данном теге.
 
   /*
   7. С помощью JS необходимо изменить цвет заднего фона каждого второго тега li.
    */
+
+  const liEls = document.querySelectorAll('li');
+  for (let i = 1; i < liEls.length; i = i + 2) {
+    liEls[i].style.backgroundColor = '#FFDFC9'
+  }
 
 </script>
 </body>
