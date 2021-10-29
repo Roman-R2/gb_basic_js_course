@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Homework</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
-  <style>
-    .message {
-      width: 150px;
-      padding: 20px;
-      background: lightgoldenrodyellow;
-      border: 1px solid orange;
-      visibility: hidden;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
+    <style>
+        .message {
+            width: 150px;
+            padding: 20px;
+            background: lightgoldenrodyellow;
+            border: 1px solid orange;
+            visibility: hidden;
+        }
+
+        .errorEmptyField {
+            border: 3px solid red;
+            box-shadow: 1px 1px 2px 0 red;
+        }
+
+        .redText {
+            color: red;
+        }
+    </style>
 </head>
 <body>
 <!--
@@ -27,19 +36,19 @@
 
 <br>
 
-<button>Показать блок</button>
+<button class="messageBtn">Показать блок</button>
 <div class="message">
-  Привет :)
+    Привет :)
 </div>
 
 <br>
 
 <form>
-  <input id="first" type="text"><br>
-  <br>
-  <input id="second" type="text"><br>
-  <br>
-  <button>Отправить</button>
+    <input id="first" type="text"><br>
+    <br>
+    <input id="second" type="text"><br>
+    <br>
+    <button>Отправить</button>
 </form>
 
 <script>
@@ -51,6 +60,10 @@
   должен меняться.
   */
 
+  const inputForShow = document.querySelector('#from');
+  inputForShow.addEventListener('input', event => {
+    document.querySelector('span').innerText = event.target.value;
+  });
 
   /*
   2. При клике на кнопку с классом messageBtn необходимо элементу с классом
@@ -58,7 +71,12 @@
   1) добавить два класса: animate__animated и animate__fadeInLeftBig
   2) поставить данному элементу стиль visibility в значение 'visible'.
    */
-
+  const messageBtnEl = document.querySelector('.messageBtn');
+  messageBtnEl.addEventListener('click', event => {
+    const messageEl = document.querySelector('.message');
+    messageEl.classList.add('animate__animated', 'animate__fadeInLeftBig');
+    messageEl.style.visibility = 'visible';
+  });
 
   /*
   3. Необходимо при отправке формы проверить, заполнены ли все поля в этой
@@ -68,6 +86,20 @@
   то выделение данного поля надо убрать.
    */
 
+  const formEl = document.querySelector('form');
+
+  formEl.addEventListener('submit', event => {
+    const formInputEls = formEl.querySelectorAll('input');
+    formInputEls.forEach(el => {
+      el.classList.remove('errorEmptyField');
+
+      if (el.value === '') {
+        event.preventDefault();
+        el.classList.add('errorEmptyField');
+      }
+    })
+
+  });
 
 </script>
 </body>

@@ -1,26 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
-  <style>
-    i {
-      font-size: 50px;
-    }
-    .golden {
-      color: gold;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+          integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+          crossorigin="anonymous"/>
+    <style>
+        i {
+            font-size: 50px;
+        }
+
+        .golden {
+            color: gold;
+        }
+
+        .dTable {
+            display: table;
+        }
+
+        .dTableCell{
+            display: table-cell;
+        }
+    </style>
 </head>
 <body>
 <div class="stars_container">
-  <i class="fas fa-star"></i>
-  <i class="fas fa-star"></i>
-  <i class="fas fa-star"></i>
-  <i class="fas fa-star"></i>
-  <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
 </div>
 
 <script>
@@ -31,12 +42,30 @@
   golden, также такой класс должен ставиться всем звездам до нее слева.
   */
 
+  const starEls = document.querySelectorAll('.fa-star');
+  starEls.forEach((el, i) => {
+    el.addEventListener('mouseover', (event) => {
+      const sameStarEls = document.querySelectorAll('.fa-star');
+      for (let idx = 0; idx <= i; idx++) {
+        sameStarEls[idx].classList.add('golden');
+      }
+      for (let idx = i + 1; idx < sameStarEls.length; idx++) {
+        sameStarEls[idx].classList.remove('golden');
+      }
+    });
+  });
 
   /*
   2. Когда мы уводим курсор мыши от звезды, все поставленные классы из первого
   задания должны быть удалены.
    */
-
+  starEls.forEach(el => {
+    el.addEventListener('mouseout', event => {
+      starEls.forEach(starEl => {
+        starEl.classList.remove('golden');
+      });
+    });
+  });
 
   /*
   3. Когда мы переводим мышь от одной звезды к другой, у нас могут мигать
@@ -44,6 +73,14 @@
   Можем ли мы это исправить? Если да, то предложите решение.
   */
 
+  // Дело в том, что между элементами звезд есть пустое пространство, они не плотно прилегают друг к другу, следовательно можно установить границы в 0 с помощью css каким-нибудь своиством.
+
+  // Хотя без этой строки (строка 80) все работает, но в рецепте из Сети для имитации таблицы задеются display: table для общего элемента и display: table-cell для внутренних элементов.
+  document.querySelector('div').classList.add('dTable');
+
+  starEls.forEach(el => {
+    el.classList.add('dTableCell');
+  });
 
 </script>
 </body>
