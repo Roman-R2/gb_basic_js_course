@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Homework</title>
+    <meta charset="UTF-8">
+    <title>Homework</title>
 </head>
 <body>
 <!--
@@ -21,8 +21,23 @@
    * @param {number} height - Rectangle height
    * @return {Rectangle}
    */
-  function Rectangle() {
+  function Rectangle(width, height) {
+    this.width = width;
+    this.height = height;
+    this.checkData();
+  }
 
+  Rectangle.prototype.checkData = function () {
+    if (Math.sign(this.width) < 1 || isNaN(this.width)) {
+      throw new Error(`Не допустимый параметр в конструкторе: ${this.width}`);
+    }
+    if (Math.sign(this.height) < 1 || isNaN(this.height)) {
+      throw new Error(`Не допустимый параметр в конструкторе: ${this.height}`);
+    }
+  }
+
+  Rectangle.prototype.getArea = function () {
+    return this.height * this.width
   }
 
   const r = new Rectangle(10, 20);

@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    .products {
-      overflow: hidden;
-      margin-top: 40px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .products {
+            overflow: hidden;
+            margin-top: 40px;
+        }
 
-    .product {
-      float: left;
-      margin-right: 20px;
-    }
-  </style>
+        .product {
+            float: left;
+            margin-right: 20px;
+        }
+    </style>
 </head>
 <body>
 <header>
-  <button class="menuButton" data-type="phones">Показать смартфоны</button>
-  <button class="menuButton" data-type="tablets">Показать планшеты</button>
-  <button class="menuButton" data-type="tv">Показать телевизоры</button>
+    <button class="menuButton" data-type="phones">Показать смартфоны</button>
+    <button class="menuButton" data-type="tablets">Показать планшеты</button>
+    <button class="menuButton" data-type="tv">Показать телевизоры</button>
 </header>
 
 <div class="products"></div>
@@ -50,10 +50,10 @@
     getProductMarkup() {
       return `
         <div class="product">
-            <div>${name}</div>
-            <img src="${imageUrl}" alt="">
-            <div>Цена: <span>${price}</span> р.</div>
-            <a href="https://example.com/producs/${id}">Подробнее</a>
+            <div>${this.name}</div>
+            <img src="${this.imageUrl}" alt="">
+            <div>Цена: <span>${this.price}</span> р.</div>
+            <a href="https://example.com/producs/${this.id}">Подробнее</a>
         </div>
       `;
     }
@@ -77,13 +77,14 @@
     ],
   };
 
-  const productsEl = document.querySelector('products');
-  document.querySelector('header').addEventListener('click', event => {
-    if (!event.currentTarget.classList.contains('.menuButton')) {
-      return;
+  const productsEl = document.querySelector('.products');
+  document.querySelector('header').addEventListener('click', ({target}) => {
+    if (target.classList.contains('menuButton')) {
+      productsEl.innerHTML = "";
+      [...products[target.dataset.type]].forEach(el => {
+        productsEl.innerHTML += el.getProductMarkup();
+      });
     }
-    productsEl.innerHTML = products[event.currentTarget.dataset.type]
-      .map(product => product.getProductMarkup());
   });
 
 </script>

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Homework</title>
+    <meta charset="UTF-8">
+    <title>Homework</title>
 </head>
 <body>
 <!--
 Необязательное задание.
 
 Ваша задача - создать функцию, которая может принимать любое неотрицательное
-целое число в качестве аргумента и возвращать число число с теми же цифрами,
+целое число в качестве аргумента и возвращать число с теми же цифрами,
 но в порядке убывания.
 Если проще - переставьте цифры, чтобы получить максимально возможное число из
 данного набора цифр.
@@ -25,12 +25,53 @@
    * параметр "n"
    */
   function descendingOrder(n) {
-
+    // Применим частотный анализ, подойдет нам так как выборка из 10 знаков, сложность O(n)
+    // Цифра ноль в числе тоже будет учитываться
+    // что-то много циклов получилось, выглядит грязновато, но я пока не знаю как без них
+    let rez = [];
+    let frequency = {
+      0: 0,
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0,
+      6: 0,
+      7: 0,
+      8: 0,
+      9: 0,
+    }
+    // Наполняем словарь колличеством, сколько раз встретилась цифра
+    for (let key of n.toString()) {
+      frequency[key] = (frequency[key] + 1) || 1;
+    }
+    for (let key in frequency) {
+      if (frequency[key] !== 0) {
+        for (let i = 0; i < frequency[key]; i++) {
+          rez.unshift(key);
+        }
+      }
+    }
+    return +rez.join('');
   }
 
-  console.log(descendingOrder(42145)); // 54421
-  console.log(descendingOrder(145263)); // 654321
-  console.log(descendingOrder(123456789)); // 987654321
+  testAssert(descendingOrder, 42145, 54421); // 54421
+  testAssert(descendingOrder, 145263, 654321); // 654321
+  testAssert(descendingOrder, 123456789, 987654321); // 987654321
+
+  testAssert(descendingOrder, 5404021, 5442100); // 5404021
+
+  function testAssert(func, checkValue, assert) {
+    const funcRez = func(checkValue);
+    if (funcRez === assert) {
+      console.log(`OK! Проверка успешная ${funcRez} === ${assert}`)
+    } else {
+      console.log(`ERROR! Проверка не прошла ${funcRez} не равно ${assert}`)
+    }
+  }
+
+  // Посмотрел решение: б*я...
+
 </script>
 </body>
 </html>
